@@ -10,6 +10,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.yaumama.magic.block.ModBlocks;
 import net.yaumama.magic.item.ModItems;
+import net.yaumama.magic.world.feature.ModConfiguredFeatures;
+import net.yaumama.magic.world.feature.ModPlacedFeatures;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -22,6 +24,8 @@ public class MagicMod {
 
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
+        ModConfiguredFeatures.register(modEventBus);
+        ModPlacedFeatures.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
         MinecraftForge.EVENT_BUS.register(this);
