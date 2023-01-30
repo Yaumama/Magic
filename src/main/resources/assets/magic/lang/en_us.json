@@ -2,5 +2,9 @@
   "item.magic.magic_silk": "Magic Infused Silk",
   "item.magic.magic_dust": "Magic Infused Dust",
 
+  "block.magic.magic_magnet": "Magical Magnet",
+  "block.magic.magic_stone": "Magic Infused Stone",
+  "block.magic.magic_deepslate": "Magic Infused Deepslate",
+
   "itemGroup.magictab": "Magic"
 }

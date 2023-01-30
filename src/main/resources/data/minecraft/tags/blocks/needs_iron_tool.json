@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "magic:magic_stone",
+    "magic:magic_deepslate",
+    "magic:magic_magnet"
+  ]
+}

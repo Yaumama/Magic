@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:string"
+    },
+    {
+      "item": "magic:magic_dust"
+    }
+  ],
+  "result": {
+    "item": "magic:magic_silk"
+  }
+}
