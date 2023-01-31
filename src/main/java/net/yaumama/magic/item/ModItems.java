@@ -6,6 +6,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import net.yaumama.magic.MagicMod;
+import net.yaumama.magic.item.custom.MagicGloves;
 
 public class ModItems {
     public static final  DeferredRegister<Item> ITEMS =
@@ -15,6 +16,9 @@ public class ModItems {
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.MAGIC_TAB)));
     public static final RegistryObject<Item> MAGIC_DUST = ITEMS.register("magic_dust",
             () -> new Item(new Item.Properties().tab(ModCreativeModeTab.MAGIC_TAB)));
+
+    public static final RegistryObject<Item> MAGIC_GLOVES = ITEMS.register("magic_gloves",
+            () -> new MagicGloves(new Item.Properties().tab(ModCreativeModeTab.MAGIC_TAB)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
