@@ -13,6 +13,7 @@ import net.yaumama.magic.item.ModItems;
 import net.yaumama.magic.world.feature.ModConfiguredFeatures;
 import net.yaumama.magic.world.feature.ModPlacedFeatures;
 import org.slf4j.Logger;
+import software.bernie.geckolib3.GeckoLib;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(MagicMod.MOD_ID)
@@ -20,6 +21,7 @@ public class MagicMod {
     public static final String MOD_ID = "magic";
     private static final Logger LOGGER = LogUtils.getLogger();
     public MagicMod() {
+        GeckoLib.initialize();
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ModItems.register(modEventBus);
