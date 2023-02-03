@@ -9,7 +9,9 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.yaumama.magic.block.ModBlocks;
+import net.yaumama.magic.client.ClientHandler;
 import net.yaumama.magic.item.ModItems;
+import net.yaumama.magic.networking.ModMessages;
 import net.yaumama.magic.world.feature.ModConfiguredFeatures;
 import net.yaumama.magic.world.feature.ModPlacedFeatures;
 import org.slf4j.Logger;
@@ -34,14 +36,14 @@ public class MagicMod {
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-
+        ModMessages.register();
     }
 
     @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
-
+            event.enqueueWork(ClientHandler::setup);
         }
     }
 }

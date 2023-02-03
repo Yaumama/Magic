@@ -1,5 +1,6 @@
 package net.yaumama.magic.item.client;
 
+import net.yaumama.magic.item.client.MagicGlovesModel;
 import net.yaumama.magic.item.custom.MagicGloves;
 import software.bernie.geckolib3.renderers.geo.GeoItemRenderer;
 
