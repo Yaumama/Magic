@@ -2,6 +2,7 @@ package net.yaumama.magic.item.custom;
 
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
@@ -11,7 +12,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.yaumama.magic.capabilities.PlayerMagicProvider;
 import net.yaumama.magic.item.client.MagicGlovesRenderer;
+import net.yaumama.magic.spells.ModSpells;
 import software.bernie.geckolib3.core.AnimationState;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -31,6 +34,26 @@ public class MagicGloves extends Item implements IAnimatable, ISyncable {
     public AnimationFactory factory = GeckoLibUtil.createFactory(this);
     public String controllerName = "controller";
     public static final int ANIM_OPEN = 0;
+
+    public static int findIndex(String arr[], String t)
+    {
+        if (arr == null) {
+            return -1;
+        }
+
+        int len = arr.length;
+        int i = 0;
+
+        while (i < len) {
+            if (arr[i] == t) {
+                return i;
+            }
+            else {
+                i = i + 1;
+            }
+        }
+        return -1;
+    }
 
     @Override
     public void onAnimationSync(int id, int state) {
@@ -63,6 +86,22 @@ public class MagicGloves extends Item implements IAnimatable, ISyncable {
     @Override
     public boolean onEntitySwing(ItemStack stack, LivingEntity entity) {
         return true;
+    }
+
+    @Override
+    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
+        ModSpells spells = new ModSpells();
+        if (!level.isClientSide() && hand == InteractionHand.MAIN_HAND) {
+            player.getCapability(PlayerMagicProvider.PLAYER_MAGIC).ifPresent(magic -> {
+                player.displayClientMessage(Component.literal("help"), true);
+                int currentSpell = findIndex(spells.spells, magic.getSelectedSpell());
+                currentSpell++;
+                currentSpell %= spells.spells.length;
+                magic.selectSpell(spells.spells[currentSpell]);
+                player.displayClientMessage(Component.literal(spells.spells[currentSpell]), true);
+            });
+        }
+        return super.use(level, player, hand);
     }
 
     public void registerControllers(AnimationData data) {
