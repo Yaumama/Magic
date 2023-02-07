@@ -30,14 +30,9 @@ public class CastSpellC2SPacket {
             ServerPlayer player = context.getSender();
             ServerLevel level = player.getLevel();
 
-            new ModSpells().castSpell("fireball", level, player);
-
             player.getCapability(PlayerMagicProvider.PLAYER_MAGIC).ifPresent(magic -> {
-                player.sendSystemMessage(Component.literal("HELLO"));
-                new ModSpells().castSpell("fireball", level, player);
+                new ModSpells().castSpell(magic.getSelectedSpell(), level, player);
             });
-
-
         });
         return true;
     }

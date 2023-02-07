@@ -15,6 +15,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.yaumama.magic.capabilities.PlayerMagicProvider;
 import net.yaumama.magic.item.client.MagicGlovesRenderer;
 import net.yaumama.magic.spells.ModSpells;
+import org.codehaus.plexus.util.StringUtils;
 import software.bernie.geckolib3.core.AnimationState;
 import software.bernie.geckolib3.core.IAnimatable;
 import software.bernie.geckolib3.core.PlayState;
@@ -93,12 +94,11 @@ public class MagicGloves extends Item implements IAnimatable, ISyncable {
         ModSpells spells = new ModSpells();
         if (!level.isClientSide() && hand == InteractionHand.MAIN_HAND) {
             player.getCapability(PlayerMagicProvider.PLAYER_MAGIC).ifPresent(magic -> {
-                player.displayClientMessage(Component.literal("help"), true);
                 int currentSpell = findIndex(spells.spells, magic.getSelectedSpell());
                 currentSpell++;
                 currentSpell %= spells.spells.length;
                 magic.selectSpell(spells.spells[currentSpell]);
-                player.displayClientMessage(Component.literal(spells.spells[currentSpell]), true);
+                player.displayClientMessage(Component.literal(StringUtils.capitalizeFirstLetter(spells.spells[currentSpell])), true);
             });
         }
         return super.use(level, player, hand);

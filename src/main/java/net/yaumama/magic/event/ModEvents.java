@@ -10,10 +10,12 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.EntityJoinLevelEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.yaumama.magic.MagicMod;
 import net.yaumama.magic.capabilities.PlayerMagic;
 import net.yaumama.magic.capabilities.PlayerMagicProvider;
 
+@Mod.EventBusSubscriber(modid = MagicMod.MOD_ID)
 public class ModEvents {
     @SubscribeEvent
     public static void onAttachCapabilitiesPlayer(AttachCapabilitiesEvent<Entity> event) {
